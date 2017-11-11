@@ -5,7 +5,7 @@ if ! [ -d "/run/mysqld" ]; then
     chown mysql:mysql /run/mysqld
 fi
 
-if ! [ -f "/var/lib/mysql/ibdata1" ]; then
+if ! [ -d "/var/lib/mysql/mysql" ]; then
     mysql_install_db
     chown -R mysql:mysql /var/lib/mysql
     [ -z "$MYSQLROOTPWD" ] && MYSQLROOTPWD=mysqlroot
@@ -26,7 +26,7 @@ if ! [ -f "/var/lib/mysql/ibdata1" ]; then
     echo "$sqlcontent" > /tmp/$sname.sql
     echo "FLUSH PRIVILEGES;" >> /tmp/$sname.sql
     sudo -u mysql mysqld --bootstrap < /tmp/$sname.sql
-    #rm /tmp/$sname.sql
+    rm /tmp/$sname.sql
     if [ -n "$1" ]; then
         if [ -f "$1" ]; then
             sudo -u mysql mysqld --bootstrap --user=root < "$1"
