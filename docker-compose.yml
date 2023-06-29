@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  mariadb01:
+    hostname: mariadb01
+    container_name: mariadb01
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    #entrypoint: ["sleep", "infinity"]
