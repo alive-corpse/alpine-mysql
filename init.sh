@@ -5,8 +5,8 @@ if ! [ -d "/run/mysqld" ]; then
     chown mysql:mysql /run/mysqld
 fi
 
-mkdir -p /var/lib/mysql/etc
-echo '[mysqld]
+[ -d "/var/lib/mysql/etc" ] ||  mkdir -p /var/lib/mysql/etc
+[ -f "/var/lib/mysql/etc/my.cnf" ] || echo '[mysqld]
 bind-address = 0.0.0.0' > /var/lib/mysql/etc/my.cnf
 
 if ! [ -d "/var/lib/mysql/mysql" ]; then

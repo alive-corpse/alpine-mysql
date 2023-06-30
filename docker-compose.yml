@@ -1,9 +1,9 @@
 version: '3.5'
 
 services:
-  mariadb01:
-    hostname: mariadb01
-    container_name: mariadb01
+  mariadb:
+    hostname: mariadb
+    container_name: mariadb
     build: .
     env_file:
       - .env
